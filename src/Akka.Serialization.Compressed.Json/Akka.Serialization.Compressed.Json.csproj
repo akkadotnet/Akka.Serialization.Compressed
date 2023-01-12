@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(LibraryFramework)</TargetFramework>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>Akka.NET serialization plugins with compression support</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Akka" Version="$(AkkaVersion)" />
+  </ItemGroup>
+	
+
+</Project>
