@@ -1,6 +1,9 @@
 ﻿# Akka.Serialization.Compressed
 
-Update this readme file with your details.
+This repository contains Akka.NET serializers that implements compression.
+
+Currently, it contains these serializers:
+- [Akka.Serialization.Compressed.Json](src/Akka.Serialization.Compressed.Json) - a compressed version of the built-in `Akka.Serialization.NewtonSoftJsonSerializer`.
 
 # The Build System
 
