@@ -1,3 +1,4 @@
+using Akka.Configuration;
 using Akka.Serialization.TestKit;
 using FluentAssertions;
 using Xunit;
@@ -7,7 +8,8 @@ namespace Akka.Serialization.Compressed.Json.Tests
 {
     public class CompressedSerializerSpec: AkkaSerializationSpec
     {
-        public CompressedSerializerSpec(ITestOutputHelper helper) : base(typeof(CompressedJsonSerializer), helper)
+        public CompressedSerializerSpec(ITestOutputHelper helper) 
+            : base(CompressedJsonSerializer.DefaultConfiguration(), "json-gzip", helper)
         {
         }
         
@@ -25,11 +27,6 @@ namespace Akka.Serialization.Compressed.Json.Tests
             bytes.Length.Should().BeLessThan(10 * 1024); // compressed size should be less than 10Kb
             var deserialized = serializer.FromBinary<BigData>(bytes);
             deserialized.Message.Should().Be(new string('x', 5 * 1024 * 1024));
-        }
-        
-        private class BigData
-        {
-            public string Message { get; } = new('x', 5 * 1024 * 1024); // 5 megabyte worth of chars
         }
     }
 }

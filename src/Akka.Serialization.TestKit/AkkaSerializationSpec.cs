@@ -42,25 +42,18 @@ namespace Akka.Serialization.TestKit
     
     public abstract class AkkaSerializationSpec : Akka.TestKit.Xunit2.TestKit
     {
-        protected AkkaSerializationSpec(Type serializerType, ITestOutputHelper helper)
-            : base(GetConfig(serializerType), nameof(AkkaSerializationSpec), helper)
+        protected AkkaSerializationSpec(Config config, string serializerId, ITestOutputHelper helper)
+            : base(GetConfig(config, serializerId), nameof(AkkaSerializationSpec), helper)
         {
         }
 
-        private static string GetConfig(Type serializerType)
+        private static Config GetConfig(Config config, string serializerId)
         {
-            return @"
-
-akka.actor {
-    serializers {
-        testserializer = """ + serializerType.AssemblyQualifiedName + @"""
-    }
-
-    serialization-bindings {
-      ""System.Object"" = testserializer
-    }
-}
-";
+            return ((Config) @$"
+akka.actor.serialization-bindings {{
+      ""System.Object"" = {serializerId}
+    }}
+}}").WithFallback(config);
         }
 
         [Fact]
@@ -482,9 +475,6 @@ my-settings{
             Assert.Equal(supervisor.WithinTimeRangeMilliseconds, sRef.WithinTimeRangeMilliseconds);
             Assert.Equal(decider.DefaultDirective, sDecider.DefaultDirective);
         }
-
-
-        //TODO: find out why this fails on build server
 
         [Fact]
         public void CanSerializeFutureActorRef()

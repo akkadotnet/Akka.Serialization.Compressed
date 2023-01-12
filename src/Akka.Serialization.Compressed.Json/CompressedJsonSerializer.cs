@@ -153,6 +153,15 @@ namespace Akka.Serialization.Compressed.Json
     /// </summary>
     public class CompressedJsonSerializer : Serializer
     {
+        /// <summary>
+        /// Returns a default configuration for akka persistence SQLite-based journals and snapshot stores.
+        /// </summary>
+        /// <returns>TBD</returns>
+        public static Config DefaultConfiguration()
+        {
+            return ConfigurationFactory.FromResource<CompressedJsonSerializer>("Akka.Serialization.Compressed.Json.reference.conf");
+        }
+
         private readonly JsonSerializer _serializer;
         
         private readonly ObjectPool<StringBuilder>? _sbPool;
