@@ -4,17 +4,18 @@
     <TargetFramework>$(LibraryFramework)</TargetFramework>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Akka.NET serialization plugins with compression support</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Akka" Version="$(AkkaVersion)" />
-    <PackageReference Include="Akka.Hosting" Version="1.0.1" />
+    <PackageReference Include="Akka.Hosting" Version="$(AkkaHostingVersion)" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="reference.conf" />
     <EmbeddedResource Include="reference.conf" />
+    <None Include="README.md" Pack="true" Visible="false" PackagePath="\" />
   </ItemGroup>
-	
 
 </Project>

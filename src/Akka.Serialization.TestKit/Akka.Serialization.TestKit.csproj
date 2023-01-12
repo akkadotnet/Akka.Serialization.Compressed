@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="Akka.TestKit.Xunit2" Version="$(AkkaVersion)" />
-    <PackageReference Include="FluentAssertions" Version="6.9.0" />
+    <PackageReference Include="FluentAssertions" Version="$(FluentAssertionsVersion)" />
   </ItemGroup>
 
 </Project>

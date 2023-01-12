@@ -1,35 +1,40 @@
 ﻿<Project>
   <PropertyGroup>
-    <Copyright>Copyright © 2022 Your Company</Copyright>
-    <Authors>Your Authors</Authors>
+    <Copyright>Copyright © 2013-2023 Akka.NET Team</Copyright>
+    <Authors>Akka.NET Team</Authors>
     <VersionPrefix>0.3.0</VersionPrefix>
     <PackageReleaseNotes>• Fixed bugs</PackageReleaseNotes>
-    <PackageIconUrl>
-    </PackageIconUrl>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageLicenseUrl>
-    </PackageLicenseUrl>
+    <PackageIconUrl>akkalogo.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/akkadotnet/Akka.Serialization.Compressed</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+  
   <PropertyGroup>
     <LibraryFramework>netstandard2.1</LibraryFramework>
     <TestsNet>net6.0</TestsNet>
     <TestsNetCore>netcoreapp3.1</TestsNetCore>
-    <NBenchVersion>1.2.2</NBenchVersion>
     <XunitVersion>2.4.2</XunitVersion>
     <XunitRunnerVisualstudio>2.4.5</XunitRunnerVisualstudio>
     <TestSdkVersion>17.3.0</TestSdkVersion>
     
     <AkkaVersion>1.4.48</AkkaVersion>
+    <AkkaHostingVersion>1.0.1</AkkaHostingVersion>
+    <FluentAssertionsVersion>6.9.0</FluentAssertionsVersion>
+    <BenchmarkDotNetVersion>0.13.3</BenchmarkDotNetVersion>
   </PropertyGroup>
+  
   <!-- SourceLink support for all Akka.NET projects -->
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-	<None Include="$(MSBuildThisFileDirectory)\..\README.md" Pack="true" Visible="false" PackagePath="\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)\..\docs\images\akkalogo.png" Pack="true" Visible="false" PackagePath="\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
