@@ -291,25 +291,8 @@ partial class Build : NukeBuild
     
     Target All => _ => _
      .Description("Executes NBench, Tests and Nuget targets/commands")
-     .DependsOn(BuildRelease, RunTests, NBench, Nuget);
+     .DependsOn(BuildRelease, RunTests, Nuget);
 
-    Target NBench => _ => _
-     .Description("Runs all BenchMarkDotNet tests")
-     .DependsOn(Compile)
-     .Executes(() =>
-     {
-         RootDirectory
-             .GlobFiles("src/**/*.Tests.Performance.csproj")
-             .ForEach(path =>
-             {
-                 DotNetRun(s => s
-                 .SetApplicationArguments($"--no-build -c release --concurrent true --trace true --output {OutputPerfTests} --diagnostic")
-                 .SetProcessLogOutput(true)
-                 .SetProcessWorkingDirectory(Directory.GetParent(path).FullName)
-                 .SetProcessExecutionTimeout((int)TimeSpan.FromMinutes(15).TotalMilliseconds)
-                 );
-             });
-     });
     //--------------------------------------------------------------------------------
     // Documentation 
     //--------------------------------------------------------------------------------
