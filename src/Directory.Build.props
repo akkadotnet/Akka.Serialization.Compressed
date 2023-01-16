@@ -23,7 +23,7 @@
     <AkkaVersion>1.4.48</AkkaVersion>
     <AkkaHostingVersion>1.0.1</AkkaHostingVersion>
     <FluentAssertionsVersion>6.9.0</FluentAssertionsVersion>
-    <BenchmarkDotNetVersion>0.13.3</BenchmarkDotNetVersion>
+    <BenchmarkDotNetVersion>0.13.4</BenchmarkDotNetVersion>
   </PropertyGroup>
   
   <!-- SourceLink support for all Akka.NET projects -->
