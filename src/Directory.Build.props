@@ -22,7 +22,7 @@
     
     <AkkaVersion>1.4.49</AkkaVersion>
     <AkkaHostingVersion>1.0.1</AkkaHostingVersion>
-    <FluentAssertionsVersion>6.9.0</FluentAssertionsVersion>
+    <FluentAssertionsVersion>6.10.0</FluentAssertionsVersion>
     <BenchmarkDotNetVersion>0.13.3</BenchmarkDotNetVersion>
   </PropertyGroup>
   
