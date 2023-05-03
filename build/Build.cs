@@ -335,12 +335,48 @@ partial class Build : NukeBuild
 
         });
 
+    private class SigClientInstallSettings: DotNetToolInstallSettings
+    {
+        private readonly string _path;
+        public SigClientInstallSettings(string path)
+        {
+            _path = path;
+        }
+
+        public override string PackageName => "SignClient";
+        public override string Version => "1.3.155";
+        public override string ToolInstallationPath => _path;
+    }
+    
+    private class NukeGlobalToolInstallSettings: DotNetToolInstallSettings
+    {
+        public override string PackageName => "Nuke.GlobalTool";
+        public override bool? Global => true;
+    }
+    
     Target Install => _ => _
         .Description("Install `Nuke.GlobalTool` and SignClient")
         .Executes(() =>
         {
-            DotNet($@"dotnet tool install SignClient --version 1.3.155 --tool-path ""{ToolsDir}"" ");
-            DotNet($"tool install Nuke.GlobalTool --global");
+            try
+            {
+                DotNetToolInstall(new SigClientInstallSettings(ToolsDir));
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("is already installed"))
+                    throw;
+            }
+
+            try
+            {
+                DotNetToolInstall(new NukeGlobalToolInstallSettings());
+            }
+            catch (Exception ex)
+            {
+                if (!ex.Message.Contains("is already installed"))
+                    throw;
+            }
         });
 
     static void Information(string info)
