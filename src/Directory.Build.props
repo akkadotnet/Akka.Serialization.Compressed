@@ -21,7 +21,7 @@
     <TestSdkVersion>17.6.3</TestSdkVersion>
     
     <AkkaVersion>1.5.8</AkkaVersion>
-    <AkkaHostingVersion>1.5.8</AkkaHostingVersion>
+    <AkkaHostingVersion>1.5.8.1</AkkaHostingVersion>
     <FluentAssertionsVersion>6.11.0</FluentAssertionsVersion>
     <BenchmarkDotNetVersion>0.13.6</BenchmarkDotNetVersion>
   </PropertyGroup>
