@@ -18,7 +18,7 @@
     <TestsNetCore>netcoreapp3.1</TestsNetCore>
     <XunitVersion>2.5.0</XunitVersion>
     <XunitRunnerVisualstudio>2.5.0</XunitRunnerVisualstudio>
-    <TestSdkVersion>17.6.3</TestSdkVersion>
+    <TestSdkVersion>17.7.2</TestSdkVersion>
     
     <AkkaVersion>1.5.12</AkkaVersion>
     <AkkaHostingVersion>1.5.12.1</AkkaHostingVersion>
