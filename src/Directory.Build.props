@@ -16,7 +16,7 @@
     <LibraryFramework>netstandard2.1</LibraryFramework>
     <TestsNet>net6.0</TestsNet>
     <TestsNetCore>netcoreapp3.1</TestsNetCore>
-    <XunitVersion>2.5.1</XunitVersion>
+    <XunitVersion>2.5.2</XunitVersion>
     <XunitRunnerVisualstudio>2.5.1</XunitRunnerVisualstudio>
     <TestSdkVersion>17.7.2</TestSdkVersion>
     
