@@ -17,7 +17,7 @@
     <TestsNet>net6.0</TestsNet>
     <TestsNetCore>netcoreapp3.1</TestsNetCore>
     <XunitVersion>2.5.1</XunitVersion>
-    <XunitRunnerVisualstudio>2.5.1</XunitRunnerVisualstudio>
+    <XunitRunnerVisualstudio>2.5.4</XunitRunnerVisualstudio>
     <TestSdkVersion>17.7.2</TestSdkVersion>
     
     <AkkaVersion>1.5.13</AkkaVersion>
