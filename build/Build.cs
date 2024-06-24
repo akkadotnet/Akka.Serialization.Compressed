@@ -330,8 +330,8 @@ partial class Build : NukeBuild
         .After(Restore)
         .Executes(() =>
         {
-            XmlTasks.XmlPoke(SourceDirectory / "Directory.Build.props", "//Project/PropertyGroup/PackageReleaseNotes", GetNuGetReleaseNotes(ChangelogFile));
-            XmlTasks.XmlPoke(SourceDirectory / "Directory.Build.props", "//Project/PropertyGroup/VersionPrefix", ReleaseVersion);
+            XmlTasks.XmlPoke(SourceDirectory / "Directory.Generated.props", "//Project/PropertyGroup/PackageReleaseNotes", GetNuGetReleaseNotes(ChangelogFile));
+            XmlTasks.XmlPoke(SourceDirectory / "Directory.Generated.props", "//Project/PropertyGroup/VersionPrefix", ReleaseVersion);
 
         });
 
