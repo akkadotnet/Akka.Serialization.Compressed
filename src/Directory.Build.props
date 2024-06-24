@@ -9,13 +9,13 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <Nullable>enable</Nullable>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   
   <PropertyGroup>
     <LibraryFramework>netstandard2.0</LibraryFramework>
     <TestsNet>net6.0</TestsNet>
-    <TestsNetFx>net48</TestsNetFx>
+    <TestsNetFx>net472</TestsNetFx>
   </PropertyGroup>
   
   <!-- SourceLink support for all Akka.NET projects -->

@@ -5,7 +5,6 @@
 	<PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Akka.NET serialization plugins with compression support</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
