@@ -1,34 +1,26 @@
 <Project>
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Generated.props', '$(MSBuildThisFileDirectory)'))" />
+  
   <PropertyGroup>
     <Copyright>Copyright © 2013-2023 Akka.NET Team</Copyright>
     <Authors>Akka.NET Team</Authors>
-    <VersionPrefix>0.3.0</VersionPrefix>
-    <PackageReleaseNotes>• Fixed bugs</PackageReleaseNotes>
     <PackageIconUrl>akkalogo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/akkadotnet/Akka.Serialization.Compressed</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <Nullable>enable</Nullable>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   
   <PropertyGroup>
-    <LibraryFramework>netstandard2.1</LibraryFramework>
+    <LibraryFramework>netstandard2.0</LibraryFramework>
     <TestsNet>net6.0</TestsNet>
-    <TestsNetCore>netcoreapp3.1</TestsNetCore>
-    <XunitVersion>2.5.1</XunitVersion>
-    <XunitRunnerVisualstudio>2.5.1</XunitRunnerVisualstudio>
-    <TestSdkVersion>17.8.0</TestSdkVersion>
-    
-    <AkkaVersion>1.5.13</AkkaVersion>
-    <AkkaHostingVersion>1.5.13</AkkaHostingVersion>
-    <FluentAssertionsVersion>6.12.0</FluentAssertionsVersion>
-    <BenchmarkDotNetVersion>0.13.8</BenchmarkDotNetVersion>
+    <TestsNetFx>net472</TestsNetFx>
   </PropertyGroup>
   
   <!-- SourceLink support for all Akka.NET projects -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>

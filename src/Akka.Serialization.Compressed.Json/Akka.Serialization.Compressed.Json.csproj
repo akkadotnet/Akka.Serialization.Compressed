@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Akka" Version="$(AkkaVersion)" />
-    <PackageReference Include="Akka.Hosting" Version="$(AkkaHostingVersion)" />
+    <PackageReference Include="Akka" />
+    <PackageReference Include="Akka.Hosting" />
   </ItemGroup>
 
   <ItemGroup>

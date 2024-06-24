@@ -1,22 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>$(TestsNetCore);$(TestsNet)</TargetFrameworks>
+    <TargetFrameworks>$(TestsNetFx);$(TestsNet)</TargetFrameworks>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   
-<!--
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\core\Akka.Tests.Shared.Internals\Akka.Tests.Shared.Internals.csproj" />
-  </ItemGroup>
--->
-
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Akka.TestKit.Xunit2" Version="$(AkkaVersion)" />
-    <PackageReference Include="FluentAssertions" Version="$(FluentAssertionsVersion)" />
+    <PackageReference Include="Akka.TestKit.Xunit2" />
+    <PackageReference Include="FluentAssertions" />
   </ItemGroup>
 
 </Project>

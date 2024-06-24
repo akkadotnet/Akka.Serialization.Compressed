@@ -371,8 +371,8 @@ namespace Akka.Serialization.Compressed.Json
             if(value is null)
                 throw new NotSupportedException("Null is not supported");
             
-            var t = value[..1];
-            var v = value[1..];
+            var t = value.Substring(0, 1);
+            var v = value.Substring(1);
             return t switch
             {
                 "I" => int.Parse(v, NumberFormatInfo.InvariantInfo),
@@ -386,9 +386,11 @@ namespace Akka.Serialization.Compressed.Json
         private static byte[] Compress(byte[] data)
         {
             using var compressedStream = new MemoryStream();
-            using var compressor = new GZipStream(compressedStream, CompressionMode.Compress);
-            compressor.Write(data, 0, data.Length);
-            compressor.Flush(); // It is critical to flush here
+            using (var compressor = new GZipStream(compressedStream, CompressionMode.Compress, false))
+            {
+                compressor.Write(data, 0, data.Length);
+                compressor.Flush(); // It is critical to flush here
+            }
             return compressedStream.ToArray();
         }
 
@@ -396,9 +398,11 @@ namespace Akka.Serialization.Compressed.Json
         private static byte[] Decompress(byte[] raw)
         {
             using var compressedStream = new MemoryStream(raw);
-            using var compressor = new GZipStream(compressedStream, CompressionMode.Decompress);
             using var uncompressedStream = new MemoryStream();
-            compressor.CopyTo(uncompressedStream);
+            using (var compressor = new GZipStream(compressedStream, CompressionMode.Decompress, false))
+            {
+                compressor.CopyTo(uncompressedStream);
+            }
             return uncompressedStream.ToArray();
         }
 
