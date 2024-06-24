@@ -6,6 +6,7 @@
 // -----------------------------------------------------------------------
 
 using System;
+using System.Collections.Immutable;
 using System.Linq;
 using Akka.Hosting;
 
@@ -23,8 +24,8 @@ public static class AkkaHostingExtensions
     
     public static AkkaConfigurationBuilder WithCompressedJsonSerializer(this AkkaConfigurationBuilder builder, params Type[] boundTypes)
     {
-        var typeHash = boundTypes.ToHashSet();
-        typeHash.Add(typeof(IShouldCompress));
+        var typeHash = boundTypes.ToImmutableHashSet();
+        typeHash = typeHash.Add(typeof(IShouldCompress));
         
         return builder.WithCustomSerializer(
             serializerIdentifier: "json-gzip",

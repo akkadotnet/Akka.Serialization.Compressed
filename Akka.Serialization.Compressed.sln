@@ -15,6 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		RELEASE_NOTES.md = RELEASE_NOTES.md
+		src\Directory.Build.props = src\Directory.Build.props
+		src\Directory.Generated.props = src\Directory.Generated.props
+		src\Directory.Packages.props = src\Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Json", "Json", "{25F8AE7C-D98B-41B1-A534-49E9603D8533}"

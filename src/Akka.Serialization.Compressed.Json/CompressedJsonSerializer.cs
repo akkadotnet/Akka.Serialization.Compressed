@@ -371,8 +371,8 @@ namespace Akka.Serialization.Compressed.Json
             if(value is null)
                 throw new NotSupportedException("Null is not supported");
             
-            var t = value[..1];
-            var v = value[1..];
+            var t = value.Substring(0, 1);
+            var v = value.Substring(1);
             return t switch
             {
                 "I" => int.Parse(v, NumberFormatInfo.InvariantInfo),
