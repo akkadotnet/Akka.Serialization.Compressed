@@ -2,8 +2,8 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <!-- Nuget package versions -->
-    <AkkaVersion>1.5.25</AkkaVersion>
-    <AkkaHostingVersion>1.5.25</AkkaHostingVersion>
+    <AkkaVersion>1.5.46</AkkaVersion>
+    <AkkaHostingVersion>1.5.46</AkkaHostingVersion>
   </PropertyGroup>
   <!-- Akka dependencies -->
   <ItemGroup>
