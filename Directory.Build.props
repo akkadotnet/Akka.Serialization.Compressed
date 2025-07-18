@@ -26,7 +26,6 @@
   <!-- NuGet package properties -->
     <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)\akkalogo.png" Pack="true" PackagePath="\" />
-    <None Include="$(MSBuildThisFileDirectory)\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
   <!-- NuGet .nupkg options -->
   <PropertyGroup>
@@ -34,7 +33,6 @@
     <PackageProjectUrl>https://github.com/akkadotnet/Akka.MultiNodeTestRunner</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageIcon>akkalogo.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
