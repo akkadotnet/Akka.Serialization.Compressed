@@ -164,7 +164,6 @@ namespace Akka.Serialization.Compressed.Json
 
         private readonly JsonSerializer _serializer;
         
-        private readonly ObjectPool<StringBuilder>? _sbPool;
         /// <summary>
         /// TBD
         /// </summary>
@@ -194,11 +193,6 @@ namespace Akka.Serialization.Compressed.Json
         public CompressedJsonSerializer(ExtendedActorSystem? system, CompressedJsonSerializerSettings settings)
             : base(system)
         {
-            if (settings.UsePooledStringBuilder)
-            {
-                _sbPool = new DefaultObjectPoolProvider()
-                    .CreateStringBuilderPool(settings.StringBuilderMinSize,settings.StringBuilderMaxSize);
-            }
             Settings = new JsonSerializerSettings
             {
                 PreserveReferencesHandling = settings.PreserveObjectReferences
@@ -293,46 +287,20 @@ namespace Akka.Serialization.Compressed.Json
         /// <returns>A byte array containing the serialized object</returns>
         public override byte[] ToBinary(object obj)
         {
-            return _sbPool is { } 
-                ? toBinary_PooledBuilder(obj) 
-                : toBinary_NewBuilder(obj);
-        }
-
-        private byte[] toBinary_NewBuilder(object obj)
-        {
-            var data = JsonConvert.SerializeObject(obj, Formatting.None, Settings);
-            var bytes = Encoding.UTF8.GetBytes(data);
-            return Compress(bytes);
-        }
-
-        private byte[] toBinary_PooledBuilder(object obj)
-        {
-            //Don't try to opt with
-            //StringBuilder sb = _sbPool.Get()
-            //Or removing null check
-            //Both are necessary to avoid leaking on thread aborts etc
-            StringBuilder? sb = null;
-            try
+            var compressedStream = new MemoryStream();
+            using (var gzipStream = new GZipStream(compressedStream, CompressionMode.Compress))
             {
-                sb = _sbPool!.Get();
-
-                using var tw = new StringWriter(sb, CultureInfo.InvariantCulture);
-                var ser = JsonSerializer.CreateDefault(Settings);
-                ser.Formatting = Formatting.None;
-                using (var jw = new JsonTextWriter(tw))
+                using (var utf8Stream = new StreamWriter(gzipStream, new UTF8Encoding(false), 1024))
                 {
-                    ser.Serialize(jw, obj);
-                }
-                var bytes = Encoding.UTF8.GetBytes(tw.ToString());
-                return Compress(bytes);
-            }
-            finally
-            {
-                if (sb != null)
-                {
-                    _sbPool?.Return(sb);    
+                    using var jsonWriter = new JsonTextWriter(utf8Stream);
+            
+                    var serializer = JsonSerializer.CreateDefault(Settings);
+                    serializer.Formatting = Formatting.None;
+                    serializer.Serialize(jsonWriter, obj);
                 }
             }
+            
+            return compressedStream.ToArray();
         }
 
         /// <summary>
@@ -343,8 +311,13 @@ namespace Akka.Serialization.Compressed.Json
         /// <returns>The object contained in the array</returns>
         public override object? FromBinary(byte[] bytes, Type type)
         {
-            var data = Encoding.UTF8.GetString(Decompress(bytes));
-            var res = JsonConvert.DeserializeObject(data, Settings);
+            using var compressedStream = new MemoryStream(bytes);
+            using var gzipStream = new GZipStream(compressedStream, CompressionMode.Decompress);
+            using var utf8Stream = new StreamReader(gzipStream, new UTF8Encoding(false));
+            using var jsonReader = new JsonTextReader(utf8Stream);
+            
+            var serializer = JsonSerializer.CreateDefault(Settings);
+            var res = serializer.Deserialize(jsonReader);
             return TranslateSurrogate(res, this, type);
         }
 
@@ -380,30 +353,6 @@ namespace Akka.Serialization.Compressed.Json
                 "M" => decimal.Parse(v, NumberFormatInfo.InvariantInfo),
                 _ => throw new NotSupportedException()
             };
-        }
-        
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static byte[] Compress(byte[] data)
-        {
-            using var compressedStream = new MemoryStream();
-            using (var compressor = new GZipStream(compressedStream, CompressionMode.Compress, false))
-            {
-                compressor.Write(data, 0, data.Length);
-                compressor.Flush(); // It is critical to flush here
-            }
-            return compressedStream.ToArray();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static byte[] Decompress(byte[] raw)
-        {
-            using var compressedStream = new MemoryStream(raw);
-            using var uncompressedStream = new MemoryStream();
-            using (var compressor = new GZipStream(compressedStream, CompressionMode.Decompress, false))
-            {
-                compressor.CopyTo(uncompressedStream);
-            }
-            return uncompressedStream.ToArray();
         }
 
         /// <summary>
