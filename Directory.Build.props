@@ -1,33 +1,38 @@
 <Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Generated.props', '$(MSBuildThisFileDirectory)'))" />
-  
+
   <PropertyGroup>
-    <Copyright>Copyright © 2013-2023 Akka.NET Team</Copyright>
+    <Copyright>Copyright © 2015-$([System.DateTime]::Now.Year) Akka.NET Team</Copyright>
     <Authors>Akka.NET Team</Authors>
-    <PackageIconUrl>akkalogo.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/akkadotnet/Akka.Serialization.Compressed</PackageProjectUrl>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <Nullable>enable</Nullable>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>12</LangVersion>
+    <Tags>akka, akkadotnet, serialization, compressed</Tags>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-  
   <PropertyGroup>
+    <!-- Visual Studio C# settings -->
     <LibraryFramework>netstandard2.0</LibraryFramework>
     <TestsNet>net6.0</TestsNet>
     <TestsNetFx>net472</TestsNetFx>
   </PropertyGroup>
-  
-  <!-- SourceLink support for all Akka.NET projects -->
+  <ItemGroup>
+    <Using Include="Akka.Event" />
+  </ItemGroup>
+  <!-- GitHub SourceLink -->
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)\..\docs\images\akkalogo.png" Pack="true" Visible="false" PackagePath="\" />
+  <!-- NuGet package properties -->
+    <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)\akkalogo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
-
+  <!-- NuGet .nupkg options -->
   <PropertyGroup>
+    <PackageTags>akka;actors;actor model;Akka;concurrency;test</PackageTags>
+    <PackageProjectUrl>https://github.com/akkadotnet/Akka.MultiNodeTestRunner</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageIcon>akkalogo.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
