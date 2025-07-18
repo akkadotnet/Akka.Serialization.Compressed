@@ -26,6 +26,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Json", "Json", "{25F8AE7C-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akka.Serialization.TestKit", "src\Akka.Serialization.TestKit\Akka.Serialization.TestKit.csproj", "{640F5154-074A-4855-8A15-B2C3F874CEFD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AA213DD8-2EB6-499B-896A-C18D4B5A8BEF}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{F4432CD6-73F9-460A-AD01-B81026350799}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,5 +66,7 @@ Global
 		{E945AABA-2779-41E8-9B43-8898FFD64F22} = {25F8AE7C-D98B-41B1-A534-49E9603D8533}
 		{0F9B9BC6-9F86-40E8-BA9B-D27BF3AC7970} = {25F8AE7C-D98B-41B1-A534-49E9603D8533}
 		{F7035FC5-8658-42AC-9317-749CC089C262} = {25F8AE7C-D98B-41B1-A534-49E9603D8533}
+		{AA213DD8-2EB6-499B-896A-C18D4B5A8BEF} = {2B9D74C1-4148-46EF-B3FE-7357839FAF40}
+		{F4432CD6-73F9-460A-AD01-B81026350799} = {AA213DD8-2EB6-499B-896A-C18D4B5A8BEF}
 	EndGlobalSection
 EndGlobal
