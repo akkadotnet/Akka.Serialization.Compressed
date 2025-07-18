@@ -1,3 +1,8 @@
+#### 1.5.46 18th July 2025 ####
+* [Update Akka.NET to 1.5.46](https://github.com/akkadotnet/akka.net/releases/tag/1.5.46)
+* [Update Akka.Hosting to 1.5.46](https://github.com/akkadotnet/Akka.Hosting/releases/tag/1.5.46)
+* [Improve memory usage when (de)serialize](https://github.com/akkadotnet/Akka.Serialization.Compressed/pull/84)
+
 #### 1.5.25 24 June 2024 ####
 * [Update Akka.NET to 1.5.25](https://github.com/akkadotnet/akka.net/releases/tag/1.5.25)
 * [Update Akka.Hosting to 1.5.25](https://github.com/akkadotnet/Akka.Hosting/releases/tag/1.5.25)
