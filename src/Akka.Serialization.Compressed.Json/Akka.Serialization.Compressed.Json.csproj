@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>$(LibraryFramework)</TargetFramework>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Akka.NET serialization plugins with compression support</Description>
+    <IsPackable>true</IsPackable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -15,7 +15,7 @@
   <ItemGroup>
     <None Remove="reference.conf" />
     <EmbeddedResource Include="reference.conf" />
-    <None Include="README.md" Pack="true" Visible="false" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
