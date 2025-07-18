@@ -32,6 +32,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AA21
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{F4432CD6-73F9-460A-AD01-B81026350799}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\pr_validation.yml = .github\workflows\pr_validation.yml
+		.github\workflows\Windows_release.yml = .github\workflows\Windows_release.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
