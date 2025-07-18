@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <!-- Nuget package versions -->
     <AkkaVersion>1.5.25</AkkaVersion>
     <AkkaHostingVersion>1.5.25</AkkaHostingVersion>
   </PropertyGroup>
@@ -11,6 +12,7 @@
   </ItemGroup>
   <!-- App dependencies -->
   <ItemGroup>
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.4"/>
   </ItemGroup>
   <!-- Test dependencies -->
   <ItemGroup>
@@ -26,6 +28,6 @@
   </ItemGroup>
   <!-- SourceLink support for all Akka.NET projects -->
   <ItemGroup>
-    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0"/>
   </ItemGroup>
 </Project>

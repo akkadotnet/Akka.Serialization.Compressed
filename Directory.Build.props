@@ -1,0 +1,45 @@
+<Project>
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Generated.props', '$(MSBuildThisFileDirectory)'))" />
+
+  <PropertyGroup>
+    <Copyright>Copyright © 2015-$([System.DateTime]::Now.Year) Akka.NET Team</Copyright>
+    <Authors>Akka.NET Team</Authors>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <Nullable>enable</Nullable>
+    <LangVersion>12</LangVersion>
+    <Tags>akka, akkadotnet, serialization, compressed</Tags>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- Visual Studio C# settings -->
+    <LibraryFramework>netstandard2.0</LibraryFramework>
+    <TestsNet>net6.0</TestsNet>
+    <TestsNetFx>net472</TestsNetFx>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Include="Akka.Event" />
+  </ItemGroup>
+  <!-- GitHub SourceLink -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+  </ItemGroup>
+  <!-- NuGet package properties -->
+    <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)\akkalogo.png" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <!-- NuGet .nupkg options -->
+  <PropertyGroup>
+    <PackageTags>akka;actors;actor model;Akka;concurrency;test</PackageTags>
+    <PackageProjectUrl>https://github.com/akkadotnet/Akka.MultiNodeTestRunner</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageIcon>akkalogo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+</Project>
