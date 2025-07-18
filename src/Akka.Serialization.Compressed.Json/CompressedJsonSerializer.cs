@@ -290,16 +290,14 @@ namespace Akka.Serialization.Compressed.Json
             var compressedStream = new MemoryStream();
             using (var gzipStream = new GZipStream(compressedStream, CompressionMode.Compress))
             {
-                var utf8Stream = new StreamWriter(gzipStream, new UTF8Encoding(false), 1024);
-                var jsonWriter = new JsonTextWriter(utf8Stream);
+                using (var utf8Stream = new StreamWriter(gzipStream, new UTF8Encoding(false), 1024))
+                {
+                    using var jsonWriter = new JsonTextWriter(utf8Stream);
             
-                var serializer = JsonSerializer.CreateDefault(Settings);
-                serializer.Formatting = Formatting.None;
-                serializer.Serialize(jsonWriter, obj);
-                
-                // Ensure all data is written
-                utf8Stream.Flush();
-                gzipStream.Flush();
+                    var serializer = JsonSerializer.CreateDefault(Settings);
+                    serializer.Formatting = Formatting.None;
+                    serializer.Serialize(jsonWriter, obj);
+                }
             }
             
             return compressedStream.ToArray();
